@@ -48,7 +48,6 @@ class App < Roda
       end
       person = people[id]
       @greeting << "<!DOCTYPE>#{person["name"]} #{person["patronymic"]} #{person["surname"]} \nmilo: #{person["email"]}\n <img src = \"#{person["avatar"]}\">"
-      
 
     end
 
