@@ -6,7 +6,7 @@ require 'roda'
 class BookApp < Roda
   route do |r|
     r.root do
-      'Hello, wordl!'
+      'Hello, world!'
     end
   end
 end
