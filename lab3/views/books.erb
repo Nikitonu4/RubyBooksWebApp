@@ -4,11 +4,23 @@
   </div>
 
   <div class="large-12 cell">
-    Данные из локальной переменной: <%= data %>
-  </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Дата прочтения</th>
+          <th>Название книги</th>
+        </tr>
+      </thead>
 
-  <div class="large-12 cell">
-    Данные из переменной экземпляра: <%= @some_books %>
+      <tbody>
+        <% @books.each_book do |book| %>
+        <tr>
+            <td><%= book.date %></td>
+            <td><%= book.author %> "<%= book.name %>"</td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-
 </div>
