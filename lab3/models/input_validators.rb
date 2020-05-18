@@ -6,11 +6,10 @@ module InputValidators
     author = raw_author || ''
     name = raw_name || ''
     date = raw_date || ''
-    errors = [].concat(check_date_format(date))
-               .concat(check_num_date(date))
+    errors = [].concat(check_date(date))
+               .concat(check_date_format(date))
                .concat(check_author(author))
                .concat(check_name(name))
-               .concat(check_date(date))
     {
       author: author,
       name: name,
@@ -27,37 +26,34 @@ module InputValidators
     end
   end
 
-  def self.check_num_date(date)
-    array_of_date = date.split('-').map(&:to_i)
-    if array_of_date[0].nil?
-      ['Вы не ввели год']
-    elsif array_of_date[1].nil?
-      ['Вы не ввели месяц']
-    elsif array_of_date[2].nil?
-      ['Вы не ввели день']
-    elsif (array_of_date[0] < 1) || (array_of_date[0] > 2020)
+  def self.check_n_d(date)
+    array = date.split('-').map(&:to_i)
+    check_year(array)
+  end
+
+  def self.check_year(array)
+    if (array[0] < 1) || (array[0] > 2020)
       ['Год не может быть меньше 1 больше 2020']
-    elsif (array_of_date[1] < 1) || (array_of_date[1] > 12)
+    else
+      check_month(array)
+    end
+  end
+
+  def self.check_month(array)
+    if (array[1] < 1) || (array[1] > 12)
       ['Месяц не может быть меньше 1 и больше 12']
-    elsif (array_of_date[2] < 1) || (array_of_date[2] > 31)
+    else
+      check_day(array)
+    end
+  end
+
+  def self.check_day(array)
+    if (array[2] < 1) || (array[2] > 31)
       ['День не может быть меньше 1 больше 31']
     else
       []
     end
   end
-
-  # def self.nil_date?(date)
-  #   array_of_date = date.split('-').map(&:to_i)
-  #   if array_of_date[0].nil?
-  #     ['Вы не ввели год']
-  #   elsif array_of_date[1].nil?
-  #     ['Вы не ввели месяц']
-  #   elsif array_of_date[2].nil?
-  #     ['Вы не ввели день']
-  #   else
-  #     []
-  #   end
-  # end
 
   def self.check_author(author)
     if author.empty?
@@ -79,7 +75,7 @@ module InputValidators
     if date.empty?
       ['Дата не может быть пустой']
     else
-      []
+      check_n_d(date)
     end
   end
 end

@@ -22,7 +22,7 @@ class BookList
     @books.sort { |book2, book1| (book1.date <=> book2.date) }
   end
 
-  def get_list_years
+  def years
     array_of_years = []
     @books.each do |book|
       year = book.date.split('-').map(&:to_i)

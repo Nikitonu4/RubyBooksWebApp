@@ -50,7 +50,7 @@ class BookApp < Roda
     r.on 'statistics' do
       r.get do
         @books = opts[:books].sort_by_date
-        @years = opts[:books].get_list_years
+        @years = opts[:books].years
         view('statistics')
       end
     end
