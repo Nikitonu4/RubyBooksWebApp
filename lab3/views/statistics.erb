@@ -14,22 +14,22 @@
       <tbody>
         <% number_of_books = 0 %>
         <% @years.each do |year| %>
-          <%@books.each do |book| %>
-            <%array_of_years=book.date.split("-").map(&:to_i) %>
-            <% if year == array_of_years[0]%>
+          <% @books.each do |book| %>
+            <% array_of_years=book.date.split("-").map(&:to_i) %>
+            <% if year == array_of_years[0] %>
               <% number_of_books+=1 %>
-            <%end %>
-          <%end %>
+            <% end %>
+          <% end %>
           <tr>
             <td><a href="/<%=year%>"> <%= year %></td>
-            <td><%=number_of_books%></td>
+            <td><%= number_of_books %></td>
           </tr>
-          <%number_of_books = 0 %>
+          <% number_of_books = 0 %>
         <% end %>
       </tbody>
     </table>
   </div>
-  
+
   <div class="large-12 cell">
     <a href="/" class="button"> К списку книг </a>
   </div>

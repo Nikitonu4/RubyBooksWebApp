@@ -32,7 +32,9 @@ module InputValidators
   end
 
   def self.check_year(array)
-    if (array[0] < 1) || (array[0] > 2020)
+    if array[0].nil?
+      ['Вы ввели пустой год']
+    elsif (array[0] < 1) || (array[0] > 2020)
       ['Год не может быть меньше 1 больше 2020']
     else
       check_month(array)
@@ -40,7 +42,9 @@ module InputValidators
   end
 
   def self.check_month(array)
-    if (array[1] < 1) || (array[1] > 12)
+    if array[1].nil?
+      ['Вы ввели пустой месяц']
+    elsif (array[1] < 1) || (array[1] > 12)
       ['Месяц не может быть меньше 1 и больше 12']
     else
       check_day(array)
@@ -48,7 +52,9 @@ module InputValidators
   end
 
   def self.check_day(array)
-    if (array[2] < 1) || (array[2] > 31)
+    if array[2].nil?
+      ['Вы ввели пустой день в дате']
+    elsif (array[2] < 1) || (array[2] > 31)
       ['День не может быть меньше 1 больше 31']
     else
       []
