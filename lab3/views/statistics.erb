@@ -3,21 +3,40 @@
     <h3>Статистика чтения за год</h3>
   </div>
   
-  <div class="large-12 cell">
-    <ul>
+
+
+
+  <div class="small-5 cell">
+    <table>
+      <thead>
+        <tr>
+          <th>Год(кликабельно)</th>
+          <th>Количество прочитанных книг</th>
+        </tr>
+      </thead>
+  </div>
+
+  <div class="small-5 cell">
+    <tbody>
     <% number_of_books = 0 %>
       <% @years.each do |year| %>
         <%@books.each do |book| %>
-
-      <%array_of_years=book.date.split("-").map { |s| s.to_i } %>
+      <%array_of_years=book.date.split("-").map(&:to_i) %>
       <% if year == array_of_years[0]%>
         <% number_of_books+=1 %>
       <%end %>
       <%end %>
-      <li> <a href="/statistics/<%=year%>"> <%= year %>: <%=number_of_books%> книг(и) прочитано</a></li>
+      <tr>
+        <td><a href="/statistics/<%=year%>"> <%= year %></td>
+        <td><%=number_of_books%></td>
+      </tr>
       <% end %>
-    </ul>
+    </tbody>
+    </table>
   </div>
+</div>
+
+  
 
   <div class="large-12 cell">
     <a href="/" class="button"> К списку книг </a>
