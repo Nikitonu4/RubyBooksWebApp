@@ -1,0 +1,26 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h3>Статистика чтения за год</h3>
+  </div>
+  
+  <div class="large-12 cell">
+    <ul>
+    <% number_of_books = 0 %>
+      <% @years.each do |year| %>
+        <%@books.each do |book| %>
+
+      <%array_of_years=book.date.split("-").map { |s| s.to_i } %>
+      <% if year == array_of_years[0]%>
+        <% number_of_books+=1 %>
+      <%end %>
+      <%end %>
+      <li> <a href="/statistics/<%=year%>"> <%= year %>: <%=number_of_books%> книг(и) прочитано</a></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="large-12 cell">
+    <a href="/" class="button"> К списку книг </a>
+  </div>
+</div>
+

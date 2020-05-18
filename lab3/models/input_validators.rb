@@ -7,7 +7,7 @@ module InputValidators
     name = raw_name || ''
     date = raw_date || ''
     errors = [].concat(check_date_format(date))
-               .concat(check_numbers_date(date))
+               .concat(check_num_date(date))
                .concat(check_author(author))
                .concat(check_name(name))
                .concat(check_date(date))
@@ -27,13 +27,13 @@ module InputValidators
     end
   end
 
-  def self.check_numbers_date(date)
+  def self.check_num_date(date)
     array_of_date = date.split('-').map(&:to_i)
-    if(array_of_date[0] == nil)
+    if array_of_date[0].nil?
       ['Вы не ввели год']
-    elsif(array_of_date[1] == nil)
+    elsif array_of_date[1].nil?
       ['Вы не ввели месяц']
-    elsif(array_of_date[2] == nil)
+    elsif array_of_date[2].nil?
       ['Вы не ввели день']
     elsif (array_of_date[0] < 1) || (array_of_date[0] > 2020)
       ['Год не может быть меньше 1 больше 2020']
@@ -45,6 +45,19 @@ module InputValidators
       []
     end
   end
+
+  # def self.nil_date?(date)
+  #   array_of_date = date.split('-').map(&:to_i)
+  #   if array_of_date[0].nil?
+  #     ['Вы не ввели год']
+  #   elsif array_of_date[1].nil?
+  #     ['Вы не ввели месяц']
+  #   elsif array_of_date[2].nil?
+  #     ['Вы не ввели день']
+  #   else
+  #     []
+  #   end
+  # end
 
   def self.check_author(author)
     if author.empty?
