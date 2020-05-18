@@ -1,10 +1,7 @@
 <div class="grid-x grid-padding-x">
   <div class="large-12 cell">
-    <h3>Статистика чтения за год</h3>
+    <h4>Статистика чтения за год</h4>
   </div>
-  
-
-
 
   <div class="small-5 cell">
     <table>
@@ -27,16 +24,13 @@
       <%end %>
       <%end %>
       <tr>
-        <td><a href="/statistics/<%=year%>"> <%= year %></td>
+        <td><a href="/<%=year%>"> <%= year %></td>
         <td><%=number_of_books%></td>
       </tr>
       <% end %>
     </tbody>
     </table>
   </div>
-</div>
-
-  
 
   <div class="large-12 cell">
     <a href="/" class="button"> К списку книг </a>

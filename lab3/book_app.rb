@@ -53,14 +53,12 @@ class BookApp < Roda
           @years = opts[:books].get_list_years
           view('statistics')
       end
-      # r.get Integer do |year|
-      #   # @books = opts[:books].sort_by_date
-      #   @year = year
-      #   pp @year
-      #   view('read_books')
-      # end
-    # end
-
     end
+
+        r.get Integer do |year|
+          @books = opts[:books].sort_by_date
+          @year = year
+          view('read_books')
+        end
   end
 end
