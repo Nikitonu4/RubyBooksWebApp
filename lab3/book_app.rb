@@ -24,7 +24,7 @@ class BookApp < Roda
                                 Book.new('Брэдбери', 'Посещение', '2010-12-09'),
                                 Book.new('Скотт', 'Квентин Дорвард', '2014-11-11')
                               ])
-                              
+
   route do |r|
     r.public if opts[:serve_static]
     r.root do
@@ -49,16 +49,16 @@ class BookApp < Roda
 
     r.on 'statistics' do
       r.get do
-          @books = opts[:books].sort_by_date
-          @years = opts[:books].get_list_years
-          view('statistics')
+        @books = opts[:books].sort_by_date
+        @years = opts[:books].get_list_years
+        view('statistics')
       end
     end
 
-        r.get Integer do |year|
-          @books = opts[:books].sort_by_date
-          @year = year
-          view('read_books')
-        end
+    r.get Integer do |year|
+      @books = opts[:books].sort_by_date
+      @year = year
+      view('read_books')
+    end
   end
 end
