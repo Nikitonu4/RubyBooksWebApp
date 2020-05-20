@@ -3,6 +3,36 @@
     <h4>Список книг</h4>
   </div>
 
+  <form method="get">
+      <div class="grid-x grid-padding-x">
+        <% unless @params[:errors].empty? %>
+          <div class="large-12 cell callout warning">
+            <p>
+              Параметры фильтра введены неверно, данные не были отфильтрованы
+            </p>
+            <ul>
+              <% @params[:errors].each do |error| %> 
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+      
+      
+        <div class="large-6 cell">
+          <label>Формат чтения
+            <input type="text" placeholder="бумажная книга" name="read_format" value="<%= @params[:read_format] %>">
+          </label>
+        </div>
+        <div class="large-12 cell">
+          <input type="submit" value="Фильтровать" class="button">
+        </div>
+      </div>
+    </form>
+  </div>
+
+
   <div class="large-12 cell">
     <table>
       <thead>

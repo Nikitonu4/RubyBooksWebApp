@@ -35,6 +35,26 @@
             </label>
           </div>
           <div class="large-12 cell">
+            <label>Формат чтения
+              <input type="text" placeholder="бумажная книга" name="read_format" value="<%= @params && @params[:read_format] %>">
+            </label>
+          </div>
+          <div class="large-12 cell">
+            <label>Размер произведения
+              <input type="text" placeholder="320" name="sizeb" value="<%= @params && @params[:sizeb] %>">
+            </label>
+          </div>
+          <div class="large-12 cell">
+            <label>Оценка по 10-балльной шкале
+              <input type="text" placeholder="10" name="mark" value="<%= @params && @params[:mark] %>">
+            </label>
+          </div>
+          <div class="large-12 cell">
+            <label>Необязательный комментарий
+              <input type="text" placeholder="2017-02-20" name="comment" value="<%= @params && @params[:comment] %>">
+            </label>
+          </div>
+          <div class="large-12 cell">
             <input type="submit" value="Добавить" class="button">
           </div>
           <div class="large-12 cell">

@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require 'forme'
 require 'roda'
 require_relative 'models'
 # BookApp class of application
 class BookApp < Roda
   opts[:root] = __dir__
   plugin :environments
+  plugin :forme
   plugin :render
   configure :development do
     plugin :public
@@ -27,6 +29,12 @@ class BookApp < Roda
     r.public if opts[:serve_static]
     r.root do
       @books = opts[:books].sort_by_date
+      @params = InputValidators.check_book(r.params['read_format'])
+      @filtered_books = if @params[:errors].empty?
+                          opts[:books].filter(@params[:read_format])
+                        else
+                          opts[:books].all_books
+                          end
       view('books')
     end
 

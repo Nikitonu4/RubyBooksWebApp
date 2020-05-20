@@ -30,4 +30,12 @@ class BookList
     end
     array_of_years.uniq.sort
   end
+
+  def filter(read_format)
+    @books.select do |book|
+      next if !read_format.empty? && !book.read_format.include?(read_format)
+
+      true
+    end
+  end
 end
