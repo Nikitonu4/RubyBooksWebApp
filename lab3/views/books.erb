@@ -9,6 +9,8 @@
         <tr>
           <th>Дата прочтения</th>
           <th>Название книги</th>
+          <th>Оценка</th>
+          <th>Формат чтения</th>
         </tr>
       </thead>
     <tbody>
@@ -16,6 +18,8 @@
       <tr>
         <td><%= book.date %></td>
         <td><%= book.author %> "<%= book.name %>"</td>
+        <td><%= book.mark %></td>
+        <td><%= book.read_format %></td>
       </tr>
       <% end %>
     </tbody>

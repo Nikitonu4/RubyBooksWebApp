@@ -13,16 +13,14 @@ class BookApp < Roda
   end
 
   opts[:books] = BookList.new([
-                                Book.new('Булгаков', 'Мастер и Маргарита', '2018-02-12'),
-                                Book.new('Рудазов', 'Серая чума', '2019-06-04'),
-                                Book.new('Бунин', 'Жизнь Арсеньева', '2019-03-23'),
-                                Book.new('Достоевский', 'Преступление и наказание', '2020-02-20'),
-                                Book.new('Круз', 'Выживатель', '2010-12-07'),
-                                Book.new('Толстой', 'Война и мир', '2020-02-24'),
-                                Book.new('Мележ', 'Дыхание грозы', '2020-01-13'),
-                                Book.new('Ахматова', 'Вечер', '2020-06-08'),
-                                Book.new('Брэдбери', 'Посещение', '2010-12-09'),
-                                Book.new('Скотт', 'Квентин Дорвард', '2014-11-11')
+                                Book.new('Булгаков', 'Мастер и Маргарита', '2018-02-12','9','бумажная книга',708, 'советую'),
+                                Book.new('Рудазов', 'Серая чума', '2019-06-04','3','бумажная книга',540,''),
+                                Book.new('Бунин', 'Жизнь Арсеньева', '2019-03-23','5','электронная книга',1092, 'отлично'),
+                                Book.new('Достоевский', 'Преступление и наказание', '2020-02-20','7','аудиокнига',301, ''),
+                                Book.new('Круз', 'Выживатель', '2010-12-07','9','бумажная книга',504, 'советую'),
+                                Book.new('Толстой', 'Война и мир', '2020-02-24','10','электронная книга',542, ''),
+                                Book.new('Мележ', 'Дыхание грозы', '2020-01-13','2','аудиокнига',12, ''),
+                                Book.new('Ахматова', 'Вечер', '2020-06-08','5','бумажная книга',104, '')
                               ])
 
   route do |r|
@@ -37,9 +35,9 @@ class BookApp < Roda
         view('new_book')
       end
       r.post do
-        @params = InputValidators.check_description(r.params['author'], r.params['name'], r.params['date'])
+        @params = InputValidators.check_description(r.params['author'], r.params['name'], r.params['date'], r.params['mark'], r.params['read_format'], r.params['sizeb'], r.params['comment'])
         if @params[:errors].empty?
-          opts[:books].add_book(Book.new(@params[:author], @params[:name], @params[:date]))
+          opts[:books].add_book(Book.new(@params[:author], @params[:name], @params[:date], @params[:mark], @params[:read_format], @params[:sizeb], @params[:comment]))
           r.redirect '/'
         else
           view('new_book')
