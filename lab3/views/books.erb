@@ -3,34 +3,27 @@
     <h4>Список книг</h4>
   </div>
 
-  <form method="get">
+<div class="large-12 cell">
+    <% form({ method: :get }, { obj: @params }) do |f| %>
       <div class="grid-x grid-padding-x">
-        <% unless @params[:errors].empty? %>
+        <% if @params.failure? %>
           <div class="large-12 cell callout warning">
             <p>
               Параметры фильтра введены неверно, данные не были отфильтрованы
             </p>
-            <ul>
-              <% @params[:errors].each do |error| %> 
-                <li><%= error %></li>
-              <% end %>
-            </ul>
           </div>
         <% end %>
 
-      
-      
         <div class="large-6 cell">
-          <label>Формат чтения
-            <input type="text" placeholder="бумажная книга" name="read_format" value="<%= @params[:read_format] %>">
-          </label>
+          <%= f.input(:read_format, type: :text, placeholder: 'Бумажная книга', label: 'Формат чтения') %>
         </div>
         <div class="large-12 cell">
-          <input type="submit" value="Фильтровать" class="button">
+          <%= f.button(value: 'Фильтровать', class: 'button') %>
         </div>
-      </div>
-    </form>
+      </div>   
+    <% end %>
   </div>
+
 
 
   <div class="large-12 cell">
