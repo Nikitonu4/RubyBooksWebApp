@@ -4,13 +4,11 @@
 
     <p>Название: <%= @book.title %></p>
     <p>Автор: <%= @book.author %></p>
-    <p>Дата публикации: <%= @book.published_on %></p>
-    <p>Оценка: <%= @book.mark %></p>
-    <p>Тираж: <%= @book.circulation %> тыс. экземпляров</p>
-    <p>Тип обложки: <%= @book.cover_type %></p>
-
+    <p>Жанр: <%= @book.genre %></p> 
+    <p>Цена: <%= @book.price %></p>
+    <p>Количество штук в магазине: <%= @book.quantity %></p>
     <a class="button" href="<%= path(@book, 'edit') %>">Редактировать</a>
     <a class="button warning" href="<%= path(@book, 'delete') %>">Удалить</a>
-    <a class="button secondary" href="<%= books_path %>">Назад к списку книг</a>
+    <a class="button secondary" href="<%= shop_path %>">Назад к списку книг</a>
   </div>
 </div>

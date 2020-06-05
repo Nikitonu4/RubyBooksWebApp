@@ -7,7 +7,7 @@ require 'roda'
 require_relative 'models'
 
 # The application class
-class BookApplication < Roda
+class ShopApplication < Roda
   opts[:root] = __dir__
   plugin :environments
   plugin :forme
@@ -22,7 +22,7 @@ class BookApplication < Roda
     opts[:serve_static] = true
   end
 
-  require_relative 'routes/books.rb'
+  require_relative 'routes/shop.rb'
 
   opts[:store] = Store.new
   opts[:books] = opts[:store].book_list
@@ -36,7 +36,7 @@ class BookApplication < Roda
     r.hash_branches
 
     r.root do
-      r.redirect books_path
+      r.redirect shop_path
     end
   end
 end

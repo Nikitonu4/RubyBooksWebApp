@@ -1,0 +1,8 @@
+---
+:book_list:
+- :id: 1
+  :title: Programming Ruby 1.9 & 2.0
+  :author: Dave Thomas
+  :genre: Фантастика
+  :price: 5400
+  :quantity: 12

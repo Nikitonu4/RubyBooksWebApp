@@ -8,7 +8,7 @@ require_relative 'book'
 class Store
   attr_reader :book_list
 
-  DATA_STORE = File.expand_path('../db/data.yaml', __dir__)
+  DATA_STORE = File.expand_path('../db/books.yaml', __dir__)
 
   def initialize
     @book_list = BookList.new

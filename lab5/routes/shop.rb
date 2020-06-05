@@ -1,22 +1,28 @@
 # frozen_string_literal: true
 
 # Routes for the cool books of this application
-class BookApplication
-  path :books, '/cool_books'
-  path :book_new, '/cool_books/new'
+class ShopApplication
+  path :shop, '/shop'
+  path :book_new, '/shop/books/new'
+  path :books, '/shop/books'
   path Book do |book, action|
     if action
-      "/cool_books/#{book.id}/#{action}"
+      "/shop/books/#{book.id}/#{action}"
     else
-      "/cool_books/#{book.id}"
+      "/shop/books/#{book.id}"
     end
   end
 
-  hash_branch('cool_books') do |r|
-    append_view_subdir('books')
-    set_layout_options(template: '../views/layout')
+  hash_branch('shop') do |r|
+  set_layout_options(template: '../views/layout')
 
     r.is do
+    append_view_subdir('shop')
+    view('shop')
+    end
+
+    r.on 'books' do
+      append_view_subdir('books')
       @books = opts[:books].all_books
       view('books')
     end
