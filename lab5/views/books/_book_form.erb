@@ -9,6 +9,12 @@
     <div class="large-12 cell">
       <%= f.input(:genre, type: :text, label: 'Жанр', placeholder: 'Фантастика')%>
     </div>
+     <div class="large-12 cell">
+      <%= f.input(:price, type: :text, label: 'Цена', placeholder: '3000')%>
+    </div>
+    <div class="large-12 cell">
+      <%= f.input(:quantity, type: :text, label: 'Количество книг в магазине', placeholder: '21')%>
+    </div>
     <div class="large-12 cell">
       <%= f.button(value: form_type, class: 'button') %>
       <a href="<%= back_location %>" class="button secondary">Отмена</a>

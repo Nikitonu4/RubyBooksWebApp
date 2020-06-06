@@ -2,15 +2,16 @@
   <div class="cell large-12">
     <h3>Список книг</h3>
 
-    <a href="<%= book_new_path %>" class="button">
+  <a href="<%= book_new_path %>" class="button">
       Добавить
-    </a>
+  </a>
   </div>
 
   <% if @books.size == 0 %>
     <div class="cell large-12 callout warning">
       В приложении нет информации о книгах
     </div>
+    -
   <% else%>
     <% @books.each do |book| %>
       <div class="card cell large-4">
@@ -26,4 +27,9 @@
       </div>
     <% end %>
   <% end %>
+  <div class="cell large-12">
+  <a href="<%= shop_path %>" class="button">
+      К категориям
+  </a>
+  </div>
 </div>

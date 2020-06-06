@@ -5,10 +5,10 @@ require_relative 'book_list'
 require_relative 'book'
 
 # Storage for all of our data
-class Store
+class StoreBooks
   attr_reader :book_list
 
-  DATA_STORE = File.expand_path('../db/books.yaml', __dir__)
+  DATA_BOOK_STORE = File.expand_path('../db/books.yaml', __dir__)
 
   def initialize
     @book_list = BookList.new
@@ -17,9 +17,9 @@ class Store
   end
 
   def read_data
-    return unless File.exist?(DATA_STORE)
+    return unless File.exist?(DATA_BOOK_STORE)
 
-    yaml_data = File.read(DATA_STORE)
+    yaml_data = File.read(DATA_BOOK_STORE)
     raw_data = Psych.load(yaml_data, symbolize_names: true)
     raw_data[:book_list].each do |raw_book|
       @book_list.add_real_book(Book.new(**raw_book))
@@ -31,6 +31,6 @@ class Store
     yaml_data = Psych.dump({
                              book_list: raw_books
                            })
-    File.write(DATA_STORE, yaml_data)
+    File.write(DATA_BOOK_STORE, yaml_data)
   end
 end

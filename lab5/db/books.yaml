@@ -6,3 +6,15 @@
   :genre: Фантастика
   :price: 5400
   :quantity: 12
+- :id: 2
+  :title: Преступление и наказание
+  :author: Достоевский
+  :genre: Фантастика
+  :price: 311
+  :quantity: 54
+- :id: 3
+  :title: Мастер и маргарита
+  :author: Булгаков
+  :genre: Роман
+  :price: 1290
+  :quantity: 42

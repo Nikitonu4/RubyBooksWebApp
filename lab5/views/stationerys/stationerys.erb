@@ -1,0 +1,31 @@
+<div class="grid-x grid-margin-x">
+  <div class="cell large-12">
+    <h3>Список канцелярских товаров</h3>
+  </div>
+
+  <% if @stationerys.size == 0 %>
+    <div class="cell large-12 callout warning">
+      В приложении нет информации о канцтоварах
+    </div>
+  <% else%>
+
+    <% @stationerys.each do |stationery| %>
+      <div class="card cell large-4">
+        <div class="card-divider">
+          <%= stationery.name %>
+        </div>
+        <div class="card-section">
+          <p>Цена: <%= stationery.price %></p>
+          <p>Количество в магазине: <%= stationery.quantity %></p>
+        </div>
+        <a class="button warning" href="<%= path(@stationery, 'delete') %>">Удалить</a>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="cell large-12">
+  <a href="<%= shop_path %>" class="button">
+      К категориям
+  </a>
+  </div>
+</div>
+
