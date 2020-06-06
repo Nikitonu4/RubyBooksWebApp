@@ -1,6 +1,9 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-12">
     <h3>Список канцелярских товаров</h3>
+    <a href="<%= stationerys_new_path %>" class="button">
+      Добавить канцелярскую принадлежность
+  </a>
   </div>
 
   <% if @stationerys.size == 0 %>
@@ -17,8 +20,9 @@
         <div class="card-section">
           <p>Цена: <%= stationery.price %></p>
           <p>Количество в магазине: <%= stationery.quantity %></p>
+          <a class="alert button" href="<%= path(stationery, 'delete') %>">Удалить</a>
         </div>
-        <a class="button warning" href="<%= path(@stationery, 'delete') %>">Удалить</a>
+        
       </div>
     <% end %>
   <% end %>

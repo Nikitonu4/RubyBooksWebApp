@@ -3,9 +3,10 @@
 # Routes for the cool books of this application
 class ShopApplication
   path :shop, '/shop'
-  path :book_new, '/shop/books/new'
+  path :books_new, '/shop/books/new'
   path :books, '/shop/books'
   path :stationerys, '/shop/stationerys'
+  path :stationerys_new, '/shop/stationerys/new'
   path :books_filter, '/shop/books/filter'
 
   path Book do |book, action|
@@ -40,7 +41,44 @@ class ShopApplication
       view('stationerys')
       end
 
-      
+      r.on 'new' do
+        r.get do
+          @parameters = {}
+          view('stationerys_new')
+        end
+
+        r.post do
+          @parameters = DryResultFormeWrapper.new(StationeryFormSchema.call(r.params))
+          if @parameters.success?
+            stationery = opts[:stationerys].add_stationery(@parameters)
+            r.redirect(stationerys_path)
+          else
+            view('stationerys_new')
+          end
+        end
+      end
+
+       r.on Integer do |stationery_id|
+        @stationery = opts[:stationerys].stationery_by_id(stationery_id)
+        next if @stationery.nil? 
+
+        r.on 'delete' do
+          r.get do
+            @parameters = {}
+            view('stationery_delete')
+          end
+
+          r.post do
+            @parameters = DryResultFormeWrapper.new(DeleteSchema.call(r.params))
+            if @parameters.success?
+              opts[:stationerys].delete_stationery(@stationery.id)
+              r.redirect(stationerys_path)
+            else
+              view('stationery_delete')
+            end
+          end
+        end
+      end
     end
 
     r.on 'books' do
@@ -59,23 +97,6 @@ class ShopApplication
           view('book')
         end
 
-        r.on 'edit' do
-          r.get do
-            @parameters = @book.to_h
-            view('book_edit')
-          end
-
-          r.post do
-            @parameters = DryResultFormeWrapper.new(BookFormSchema.call(r.params))
-            if @parameters.success?
-              opts[:books].update_book(@book.id, @parameters)
-              r.redirect(path(@book))
-            else
-              view('book_edit')
-            end
-          end
-        end
-
         r.on 'delete' do
           r.get do
             @parameters = {}
@@ -83,7 +104,7 @@ class ShopApplication
           end
 
           r.post do
-            @parameters = DryResultFormeWrapper.new(BookDeleteSchema.call(r.params))
+            @parameters = DryResultFormeWrapper.new(DeleteSchema.call(r.params))
             if @parameters.success?
               opts[:books].delete_book(@book.id)
               r.redirect(books_path)

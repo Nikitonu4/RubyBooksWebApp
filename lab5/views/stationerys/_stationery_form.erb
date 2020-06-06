@@ -1,0 +1,17 @@
+<% form({ method: :post },{ obj: @parameters }) do |f| %>
+  <div class="grid-x grid-margin-x">
+    <div class="large-12 cell">
+      <%= f.input(:name, type: :text, label: 'Название', placeholder: 'Карандаш')%>
+    </div>
+   <div class="large-12 cell">
+      <%= f.input(:price, type: :text, label: 'Цена', placeholder: '666')%>
+    </div>
+    <div class="large-12 cell">
+      <%= f.input(:quantity, type: :text, label: 'Цена', placeholder: '50')%>
+    </div>
+    <div class="large-12 cell">
+      <%= f.button(value: form_type, class: 'button') %>
+      <a href="<%= back_location %>" class="button secondary">Отмена</a>
+    </div>
+  </div>
+<% end %>

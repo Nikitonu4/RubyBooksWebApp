@@ -1,6 +1,2 @@
 ---
-:stationery_list:
-- :id: 1
-  :name: Карандаш
-  :price: 9
-  :quantity: 102
+:stationery_list: []
