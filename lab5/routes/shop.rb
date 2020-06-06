@@ -5,6 +5,7 @@ class ShopApplication
   path :shop, '/shop'
   path :book_new, '/shop/books/new'
   path :books, '/shop/books'
+  path :stationerys, '/shop/stationerys'
   path Book do |book, action|
     if action
       "/shop/books/#{book.id}/#{action}"
@@ -22,6 +23,12 @@ class ShopApplication
     end
 
     r.on 'books' do
+      append_view_subdir('books')
+      @books = opts[:books].all_books
+      view('books')
+    end
+
+    r.on 'stationerys' do
       append_view_subdir('books')
       @books = opts[:books].all_books
       view('books')
