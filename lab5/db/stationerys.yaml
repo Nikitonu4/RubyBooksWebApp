@@ -8,3 +8,35 @@
   :name: Ластик
   :price: 9.0
   :quantity: 320
+- :id: 3
+  :name: Дырокол
+  :price: 450.0
+  :quantity: 12
+- :id: 4
+  :name: Степлер
+  :price: 600.0
+  :quantity: 40
+- :id: 5
+  :name: Ножницы
+  :price: 40.0
+  :quantity: 10
+- :id: 6
+  :name: Бумажные блоки для записей
+  :price: 500.0
+  :quantity: 21
+- :id: 7
+  :name: Бумага для принтера А4
+  :price: 220.0
+  :quantity: 50
+- :id: 8
+  :name: Калькулятор
+  :price: 870.0
+  :quantity: 20
+- :id: 9
+  :name: Корректор текста
+  :price: 100.0
+  :quantity: 435
+- :id: 10
+  :name: Бейдж
+  :price: 40.0
+  :quantity: 100

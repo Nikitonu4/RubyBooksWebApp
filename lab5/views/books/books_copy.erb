@@ -1,14 +1,14 @@
-<div class="grid-x grid-padding-x">
-  <div class="large-12 cell">
+<div class="grid-x grid-margin-x">
+  <div class="cell large-12">
     <h3>Список книг</h3>
-    <a href="<%= books_new_path %>" class="button">Добавить книгу</a>
-    <a href="<%= shop_path %>" class="button"> К категориям</a>
+  <a href="<%= books_new_path %>" class="button">Добавить книгу</a>
+  <a href="<%= shop_path %>" class="button"> К категориям</a>
   </div>
 
   <div class="large-12 cell">
     <% form({ method: :get }, { obj: @params }) do |f| %>
       <div class="grid-x grid-padding-x">
-      <% if @params.failure? %>
+        <% if @params.faliure? %>
           <div class="large-12 cell callout warning">
             <p>
               Параметры фильтра введены неверно, данные не были отфильтрованы
@@ -17,10 +17,10 @@
         <% end %>
 
         <div class="large-6 cell">
-          <%= f.input(:title, type: :text, placeholder: 'Доктор', label: 'Название') %>
+          <%= f.input(:title, type: :text, placeholder: 'Преступление и наказание', label: 'Название') %>
         </div>
         <div class="large-6 cell">
-          <%= f.input(:genre, type: :text, placeholder: 'Философия', label: 'Жанр') %>
+          <%= f.input(:genre, type: :text, placeholder: 'Фантастика', label: 'Жанр') %>
         </div>
         <div class="large-12 cell">
           <%= f.button(value: 'Фильтровать', class: 'button') %>
@@ -29,14 +29,12 @@
     <% end %>
   </div>
 
-
-
-    <% if @filtered_books.empty? %> 
-      <div class="callout">
-        Согласно вашему фильтру никаких книг не было найдено
-      </div>
-    <% else %>
-    <% @filtered_books.each do |book| %>
+ <% if @books.size == 0 %>
+   <div class="cell large-12 callout warning">
+     В приложении нет информации о книгах
+   </div>
+ <% else%>
+   <% @books.each do |book| %>
      <div class="card cell large-4">
        <div class="card-divider">
          <%= book.title %>
@@ -45,10 +43,10 @@
          <p><%= book.author %></p>
          <p>
            <a class="button" href="<%= path(book) %>">Информация о книге</a>
-         </p>
+         <p>
        </div>
      </div>
-     <% end %>
    <% end %>
-  </div>
+ <% end %>
+
 </div>

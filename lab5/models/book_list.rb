@@ -18,6 +18,14 @@ class BookList
     @books[id]
   end
 
+  def filter(title, genre)
+    @books.values.select do |book|
+      next if title && !title.empty? && title != book.title
+      next if genre && !genre.empty? && genre != book.genre
+      true
+    end
+  end
+
   def add_book(parameters)
     book_id = if @books.empty?
                 1

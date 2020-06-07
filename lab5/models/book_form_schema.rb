@@ -8,6 +8,6 @@ BookFormSchema = Dry::Schema.Params do
   required(:title).filled(SchemaTypes::StrippedString)
   required(:author).filled(SchemaTypes::StrippedString)
   required(:genre).filled(SchemaTypes::StrippedString)
-  required(:price).filled(:float)
-  required(:quantity).filled(:integer)
+  required(:price).filled(:float, gt?: 0)
+  required(:quantity).filled(:integer, gt?: 0)
 end

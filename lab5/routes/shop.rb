@@ -37,8 +37,8 @@ class ShopApplication
       append_view_subdir('stationerys')
 
       r.is do
-      @stationerys = opts[:stationerys].all_stationerys
-      view('stationerys')
+        @stationerys = opts[:stationerys].all_stationerys
+        view('stationerys')
       end
 
       r.on 'new' do
@@ -58,9 +58,9 @@ class ShopApplication
         end
       end
 
-       r.on Integer do |stationery_id|
+      r.on Integer do |stationery_id|
         @stationery = opts[:stationerys].stationery_by_id(stationery_id)
-        next if @stationery.nil? 
+        next if @stationery.nil?
 
         r.on 'delete' do
           r.get do
@@ -85,7 +85,14 @@ class ShopApplication
       append_view_subdir('books')
 
       r.is do
-        @books = opts[:books].all_books
+        # @books = opts[:books].all_books
+        # view('books')
+        @params = DryResultFormeWrapper.new(BookFilterFormSchema.call(r.params))
+        @filtered_books = if @params.success?
+                            opts[:books].filter(@params[:title], @params[:genre])
+                          else
+                            opts[:books].all_books
+                          end
         view('books')
       end
 

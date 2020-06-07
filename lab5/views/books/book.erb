@@ -7,8 +7,8 @@
     <p>Жанр: <%= @book.genre %></p> 
     <p>Цена: <%= @book.price %></p>
     <p>Количество штук в магазине: <%= @book.quantity %></p>
-    <a class="button" href="<%= path(@book, 'edit') %>">Редактировать</a>
     <a class="alert button" href="<%= path(@book, 'delete') %>">Удалить</a>
-    <a class="button secondary" href="<%= shop_path %>">Назад к списку книг</a>
+    <a class="button" href="<%= books_path %>">К списку книг</a>
+     <a class="hollow button secondary" href="<%= shop_path %>">К категориям</a>
   </div>
 </div>
