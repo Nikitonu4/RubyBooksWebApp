@@ -19,9 +19,12 @@
         <div class="card-section">
           <p>Цена: <%= stationery.price %></p>
           <p>Количество в магазине: <%= stationery.quantity %></p>
-          <a class="alert button" href="<%= path(stationery, 'delete') %>">Удалить</a>
+           <p>
+            <a class="button" href="<%= path(stationery) %>">
+            Информация о товаре
+            </a>
         </div>
-        
+
       </div>
     <% end %>
   <% end %>

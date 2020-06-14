@@ -8,6 +8,9 @@ class ShopApplication
   path :stationerys, '/shop/stationerys'
   path :stationerys_new, '/shop/stationerys/new'
   path :books_filter, '/shop/books/filter'
+  path :statistics, '/shop/book/statistics'
+  path :lists, '/shop/lists'
+  path :lists_new, '/shop/lists/new'
 
   path Book do |book, action|
     if action
@@ -25,12 +28,61 @@ class ShopApplication
     end
   end
 
+  path ShopList do |list, action, product|
+    if product
+      puts 'здесь product'
+      "/shop/lists/#{list.id}/#{product.id}/#{action}"
+    elsif action
+      puts 'здесь action'
+      "/shop/lists/#{list.id}/#{action}"
+    else
+      puts 'здесь ID-2'
+      "/shop/lists/#{list.id}"
+    end
+  end
+
   hash_branch('shop') do |r|
     set_layout_options(template: '../views/layout')
 
     r.is do
       append_view_subdir('shop')
       view('shop')
+    end
+
+    r.on 'lists' do
+      append_view_subdir('lists')
+
+       r.is do
+        @lists = opts[:lists].all_lists
+        view('lists')
+      end
+
+      r.on 'new' do
+        r.get do
+          @parameters = {}
+          view('list_new')
+        end
+
+        r.post do
+          @parameters = DryResultFormeWrapper.new(ListFormSchema.call(r.params))
+          if @parameters.success?
+            lists = opts[:lists].add_list(ShopList.new(@parameters[:name]))
+            r.redirect lists_path
+          else
+            view('list_new')
+          end
+        end
+      end
+
+      r.on Integer do |lists_id|
+        puts 'здесь ID'
+        @lists = opts[:lists].list_by_id(lists_id)
+        next if @lists.nil?
+
+        r.is do
+          view('list')
+        end
+      end
     end
 
     r.on 'stationerys' do
@@ -62,6 +114,10 @@ class ShopApplication
         @stationery = opts[:stationerys].stationery_by_id(stationery_id)
         next if @stationery.nil?
 
+        r.is do
+          view('stationery')
+        end
+
         r.on 'delete' do
           r.get do
             @parameters = {}
@@ -85,8 +141,6 @@ class ShopApplication
       append_view_subdir('books')
 
       r.is do
-        # @books = opts[:books].all_books
-        # view('books')
         @params = DryResultFormeWrapper.new(BookFilterFormSchema.call(r.params))
         @filtered_books = if @params.success?
                             opts[:books].filter(@params[:title], @params[:genre])
@@ -94,6 +148,14 @@ class ShopApplication
                             opts[:books].all_books
                           end
         view('books')
+      end
+
+      r.on 'statistics' do
+        r.get do
+          # @books = opts[:books].sort_by_genre
+          @genres = opts[:books].genres
+          view('statistics')
+        end
       end
 
       r.on Integer do |book_id|

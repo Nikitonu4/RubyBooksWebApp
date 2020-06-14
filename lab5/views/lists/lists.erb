@@ -1,0 +1,23 @@
+<div class="grid-x grid-margin-x">
+  <div class="cell large-12">
+    <h3>Списки покупок</h3>
+    <a href="<%= lists_new_path %>" class="button">Добавить список покупок </a>
+    <a href="<%= shop_path %>" class="button"> К категориям </a>
+  </div>
+
+  <% if @lists.size == 0 %>
+    <div class="cell large-12 callout warning">
+      В приложении нет информации о списках покупок
+    </div>
+  <% else%>
+    <% @lists.each do |list1| %>
+     <div class="cell large-12">
+     <hr>
+       <h4><%= list1.name %>
+       <a class="button" href="<%= path(list1) %>">Информация о списке</a>
+       </h4>
+     </div>
+   <% end %>
+ <% end %>
+
+</div>

@@ -23,7 +23,7 @@ class StationeryList
                       1
                     else
                       @stationerys.keys.max + 1
-              end
+                    end
     @stationerys[stationery_id] = Stationery.new(id: stationery_id, **parameters.to_h)
     @stationerys[stationery_id]
   end

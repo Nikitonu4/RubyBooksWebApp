@@ -1,3 +1,14 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+      <label>Книги</label>
+        <select onchange="top.location=this.value">
+        <% @filtered_books.each do |book| %>
+          <option value="<%= path(book) %>"> <%= book.title %></option>
+        <% end %>
+        </select>
+  </div>
+</div>
+
 <div class="grid-x grid-margin-x">
   <div class="cell large-12">
     <h3>Список книг</h3>
@@ -15,10 +26,10 @@
         </div>
       <% end %>
       <div class="large-6 cell">
-        <%= f.input(:title, type: :text, placeholder: 'Доктор', label: 'Название') %>
+        <%= f.input(:title, type: :text, placeholder: 'Мой Доктор', label: 'Название') %>
       </div>
       <div class="large-6 cell">
-        <%= f.input(:genre, type: :text, placeholder: 'Философия', label: 'Жанр') %>
+        <%= f.input(:genre, type: :text, placeholder: 'Роман', label: 'Жанр') %>
       </div>
       <div class="large-12 cell">
         <%= f.button(value: 'Фильтровать', class: 'button') %>

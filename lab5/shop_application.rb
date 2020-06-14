@@ -29,6 +29,11 @@ class ShopApplication < Roda
   opts[:books] = opts[:store_books].book_list
   opts[:stationerys] = opts[:store_stationerys].stationery_list
 
+  # opts[:lists] = opts[:store].shopping_lists
+
+  # opts[:lists] = ShopLists.new([ShopList.new('book', @book_list.all_books)])
+  opts[:lists] = ShopLists.new
+
   # status_handler(404) do
   #   view('not_found')
   # end

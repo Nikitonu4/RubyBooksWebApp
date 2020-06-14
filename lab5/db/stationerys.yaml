@@ -1,9 +1,5 @@
 ---
 :stationery_list:
-- :id: 1
-  :name: Карандаш
-  :price: 12.0
-  :quantity: 120
 - :id: 2
   :name: Ластик
   :price: 9.0
