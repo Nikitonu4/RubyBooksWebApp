@@ -1,3 +1,15 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Магазин</li>
+      <li><a href="<%= shop_path %>">Категории</a></li>
+      <li><a href="<%= stationerys_path %>">Канцелярские товары</a></li>
+      <li><a href="<%= books_path %>">Книги</a></li>
+      <li><a href="<%= lists_path %>">Списки покупок</a></li>
+    </ul>
+  </div>
+</div>
+
 <div class="grid-x grid-padding-x">
   <div class="large-12 cell">
     <h4>Статистика по жанрам</h4>
@@ -26,10 +38,5 @@
         <% end %>
       </tbody>
     </table>
-  </div>
-
-  <div class="large-12 cell">
-    <a class="button" href="<%= books_path %>">Список книг</a>
-    <a class="button" href="<%= shop_path %>">Категории</a>
   </div>
 </div>
