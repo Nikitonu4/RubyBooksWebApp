@@ -11,7 +11,7 @@
   :author: Достоевский
   :genre: Фантастика
   :price: 311
-  :quantity: 54
+  :quantity: 1000
 - :id: 3
   :title: Мастер и маргарита
   :author: Булгаков
@@ -30,3 +30,9 @@
   :genre: Антиутопия
   :price: 430.0
   :quantity: 10
+- :id: 6
+  :title: Смертельный удар
+  :author: Злотников
+  :genre: Фантастика
+  :price: 1222.0
+  :quantity: 53

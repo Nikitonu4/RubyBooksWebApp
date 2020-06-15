@@ -21,6 +21,14 @@ class StationeryList
     end
   end
 
+  def total_stationerys
+    total = 0
+    @stationerys.values.each do |stationery|
+      total+=stationery.quantity
+    end
+    total
+  end
+
   def stationery_by_id(id)
     @stationerys[id]
   end

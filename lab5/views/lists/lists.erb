@@ -10,11 +10,12 @@
       В приложении нет информации о списках покупок
     </div>
   <% else%>
-    <% @lists.each do |list1| %>
+    <% @lists.each do |list| %>
      <div class="cell large-12">
      <hr>
-       <h4><%= list1.name %>
-       <a class="button" href="<%= path(list1) %>">Информация о списке</a>
+       <h4><%= list.name %>
+       <a class="button" href="<%= path(list) %>">Информация о списке</a>
+    
        </h4>
      </div>
    <% end %>

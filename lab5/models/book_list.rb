@@ -4,6 +4,7 @@ require_relative 'book'
 
 # The class that contains all our books
 class BookList
+  attr_writer :genre
   def initialize(books = [])
     @books = books.map do |book|
       [book.id, book]
@@ -14,11 +15,46 @@ class BookList
     @books.values
   end
 
-  def count_books
+  def count_books(genre)
     count = 0
-    @books.each do |book|
-      count+=book.quantity
+    @books.values.each do |book|
+      if book.genre == genre
+        count+=1
+      end
     end
+    count
+  end
+
+  def instance_books(genre)
+    instance = 0
+    @books.values.each do |book|
+      if book.genre == genre
+        instance+=book.quantity
+      end
+    end
+    instance
+  end
+
+  def average_cost(genre)
+    cost = 0
+    count = 0
+    @books.values.each do |book|
+      if book.genre == genre
+        count+=1
+        if book.price !=0 && book.quantity != 0
+          cost+=book.price
+        end
+      end
+    end
+    (cost/count).round
+  end
+
+  def total_books
+    total = 0
+    @books.values.each do |book|
+      total+=book.quantity
+    end
+    total
   end
 
   def genres
@@ -39,14 +75,16 @@ class BookList
     count
   end
 
+  
+
   def book_by_id(id)
     @books[id]
   end
 
   def filter(title, genre)
     @books.values.select do |book|
-      next if title && !title.empty? && title != book.title
-      next if genre && !genre.empty? && genre != book.genre
+      next if title && !title.empty? && !book.title.include?(title)
+      next if genre && !genre.empty? && !book.genre.include?(genre)
       true
     end
   end

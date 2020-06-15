@@ -11,14 +11,17 @@
           <th>Количество книг</th>
           <th>Средняя стоимость</th>
           <th>Суммарное количество экземпляров</th>
-          <th>Процент</th>
+          <th>Процент количества экземпляров относительно общего числа товаров</th>
         </tr>
       </thead>
       <tbody>
-        <% @genres.each do |genre| %>
+        <% @books.genres.each do |genre| %>
           <tr>
             <td> <%= genre %> </td>
-            <td> <%= @books.sum_quantity(genre) %> </td> 
+            <td> <%= @books.count_books(genre) %> </td>
+            <td> <%= @books.average_cost(genre) %> </td>
+            <td> <%= @books.instance_books(genre) %> </td>
+            <td> <%= ((@books.instance_books(genre) / ((@books.total_books + @stationerys.total_stationerys).to_f))*100).round(3) %> % </td>
           </tr>
         <% end %>
       </tbody>

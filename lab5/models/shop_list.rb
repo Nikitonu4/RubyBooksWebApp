@@ -5,7 +5,8 @@ require_relative 'stationery'
 
 # The class that contains all our books
 class ShopList
-  def initialize(name, products = [])
+  def initialize(id, name, products = [])
+    @id = id
     @name = name
     if products == nil
       @products = []

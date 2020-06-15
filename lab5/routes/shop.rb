@@ -36,7 +36,7 @@ class ShopApplication
       puts 'здесь action'
       "/shop/lists/#{list.id}/#{action}"
     else
-      puts 'здесь ID-2'
+      pp list.id
       "/shop/lists/#{list.id}"
     end
   end
@@ -153,8 +153,8 @@ class ShopApplication
       r.on 'statistics' do
         r.get do
           puts 'я здесь'
-          @books = opts[:books].all_books
-          @genres = opts[:books].genres
+          @books = opts[:books]
+          @stationerys = opts[:stationerys]
           view('statistics')
         end
       end

@@ -38,7 +38,7 @@ class ShopLists
               else
                 @lists.keys.max + 1
               end
-    @lists[list_id] = list
+    @lists[list_id] = list(list_id)
     @lists[list_id]
   end
 
@@ -46,4 +46,3 @@ class ShopLists
     @lists.delete(id)
   end
 end
-
