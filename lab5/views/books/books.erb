@@ -1,19 +1,20 @@
-<div class="grid-x grid-padding-x">
-  <div class="large-12 cell">
-      <label>Книги</label>
-        <select onchange="top.location=this.value">
-        <% @filtered_books.each do |book| %>
-          <option value="<%= path(book) %>"> <%= book.title %></option>
-        <% end %>
-        </select>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Магазин</li>
+      <li><a href="<%= shop_path %>">Категории</a></li>
+      <li><a href="<%= stationerys_path %>">Канцелярские товары</a></li>
+      <li><a href="<%= statistics_path %>">Статистика книг</a></li>
+      <li><a href="<%= lists_path %>">Списки покупок</a></li>
+    </ul>
   </div>
 </div>
 
 <div class="grid-x grid-margin-x">
+
   <div class="cell large-12">
-    <h3>Список книг</h3>
-    <a href="<%= books_new_path %>" class="button">Добавить</a>
-    <a href="<%= shop_path %>" class="button"> К категориям</a>
+    <h4>Список книг</h4>
+    <a href="<%= books_new_path %>" class="secondary button">Добавить</a>
   </div>
 </div>
 
@@ -32,7 +33,7 @@
         <%= f.input(:genre, type: :text, placeholder: 'Роман', label: 'Жанр') %>
       </div>
       <div class="large-12 cell">
-        <%= f.button(value: 'Фильтровать', class: 'button') %>
+        <%= f.button(value: 'Фильтровать', class: 'hollow button secondary') %>
       </div>
     <% end %>
   <% if @filtered_books.empty? %>
@@ -49,7 +50,7 @@
         <div class="card-section">
           <p><%= book.author %></p>
           <p>
-            <a class="button" href="<%= path(book) %>">Информация о книге</a>
+            <a class="hollow button" href="<%= path(book) %>">Информация о книге</a>
           <p>
         </div>
       </div>

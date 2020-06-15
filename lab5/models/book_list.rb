@@ -14,25 +14,30 @@ class BookList
     @books.values
   end
 
-  # def sort_by_genre
-  #   @books.sort { |book2, book1| (book1.genre <=> book2.genre) }
-  # end
+  def count_books
+    count = 0
+    @books.each do |book|
+      count+=book.quantity
+    end
+  end
 
-  # def genre
-  #   array_of_genres = []
-  #   @books.values.each do |book|
-  #     genre = book.genre.map(&:to_s)
-  #     array_of_genres.append(genre[0])
-  #   end
-  #   array_of_genres.uniq.sort
-  # end
+  def genres
+    array_of_genres = []
+    @books.values.each do |book|
+      array_of_genres.append(book.genre)
+    end
+    array_of_genres.uniq.sort
+  end
 
-  #  def sum_quantity
-  #   sum = 0
-  #   @books.each do |book|
-  #     sum+=book.quantity
-  #   sum
-  # end
+  def count_quantity
+    count = 0
+    @books.each do |book|
+      if book.genre == genre
+        count+=book.quantity
+      end
+    end
+    count
+  end
 
   def book_by_id(id)
     @books[id]
@@ -55,6 +60,8 @@ class BookList
     @books[book_id] = Book.new(id: book_id, **parameters.to_h)
     @books[book_id]
   end
+
+  
 
   def add_real_book(book)
     @books[book.id] = book

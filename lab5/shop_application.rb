@@ -25,23 +25,20 @@ class ShopApplication < Roda
   require_relative 'routes/shop.rb'
 
   opts[:store_books] = StoreBooks.new
-  opts[:store_stationerys] = StoreStationerys.new
   opts[:books] = opts[:store_books].book_list
+
+  opts[:store_stationerys] = StoreStationerys.new
   opts[:stationerys] = opts[:store_stationerys].stationery_list
 
-  # opts[:lists] = opts[:store].shopping_lists
-
-  # opts[:lists] = ShopLists.new([ShopList.new('book', @book_list.all_books)])
   opts[:lists] = ShopLists.new
 
-  # status_handler(404) do
-  #   view('not_found')
-  # end
-
+  status_handler(404) do
+    view('not_found')
+  end
+  
   route do |r|
     r.public if opts[:serve_static]
     r.hash_branches
-
     r.root do
       r.redirect shop_path
     end

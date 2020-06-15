@@ -3,32 +3,30 @@
     <h4>Статистика по жанрам</h4>
   </div>
 
-  <div class="small-5 cell">
+  <div class="large-12 cell">
     <table>
       <thead>
         <tr>
           <th>Жанр</th>
+          <th>Количество книг</th>
+          <th>Средняя стоимость</th>
+          <th>Суммарное количество экземпляров</th>
+          <th>Процент</th>
         </tr>
       </thead>
       <tbody>
-        <% @years.each do |year| %>
-          <% @books.each do |book| %>
-            <% array_of_years=book.date.split("-").map(&:to_i) %>
-            <% if year == array_of_years[0] %>
-              <% number_of_books+=1 %>
-            <% end %>
-          <% end %>
+        <% @genres.each do |genre| %>
           <tr>
-            <td><a href="/<%=year%>"> <%= year %></td>
-            <td><%= number_of_books %></td>
+            <td> <%= genre %> </td>
+            <td> <%= @books.sum_quantity(genre) %> </td> 
           </tr>
-          <% number_of_books = 0 %>
         <% end %>
       </tbody>
     </table>
   </div>
 
   <div class="large-12 cell">
-    <a href="/" class="button"> К списку книг </a>
+    <a class="button" href="<%= books_path %>">Список книг</a>
+    <a class="button" href="<%= shop_path %>">Категории</a>
   </div>
 </div>

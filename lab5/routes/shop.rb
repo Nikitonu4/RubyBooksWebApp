@@ -8,7 +8,7 @@ class ShopApplication
   path :stationerys, '/shop/stationerys'
   path :stationerys_new, '/shop/stationerys/new'
   path :books_filter, '/shop/books/filter'
-  path :statistics, '/shop/book/statistics'
+  path :statistics, '/shop/books/statistics'
   path :lists, '/shop/lists'
   path :lists_new, '/shop/lists/new'
 
@@ -152,7 +152,8 @@ class ShopApplication
 
       r.on 'statistics' do
         r.get do
-          # @books = opts[:books].sort_by_genre
+          puts 'я здесь'
+          @books = opts[:books].all_books
           @genres = opts[:books].genres
           view('statistics')
         end
