@@ -18,9 +18,7 @@ class BookList
   def count_books(genre)
     count = 0
     @books.values.each do |book|
-      if book.genre == genre
-        count+=1
-      end
+      count += 1 if book.genre == genre
     end
     count
   end
@@ -28,9 +26,7 @@ class BookList
   def instance_books(genre)
     instance = 0
     @books.values.each do |book|
-      if book.genre == genre
-        instance+=book.quantity
-      end
+      instance += book.quantity if book.genre == genre
     end
     instance
   end
@@ -39,20 +35,18 @@ class BookList
     cost = 0
     count = 0
     @books.values.each do |book|
-      if book.genre == genre
-        count+=1
-        if book.price !=0 && book.quantity != 0
-          cost+=book.price
-        end
-      end
+      next unless book.genre == genre
+
+      count += 1
+      cost += book.price if book.price != 0 && book.quantity != 0
     end
-    (cost/count).round
+    (cost / count).round
   end
 
   def total_books
     total = 0
     @books.values.each do |book|
-      total+=book.quantity
+      total += book.quantity
     end
     total
   end
@@ -68,14 +62,10 @@ class BookList
   def count_quantity
     count = 0
     @books.each do |book|
-      if book.genre == genre
-        count+=book.quantity
-      end
+      count += book.quantity if book.genre == genre
     end
     count
   end
-
-  
 
   def book_by_id(id)
     @books[id]
@@ -83,8 +73,9 @@ class BookList
 
   def filter(title, genre)
     @books.values.select do |book|
-      next if title && !title.empty? && !book.title.include?(title)
-      next if genre && !genre.empty? && !book.genre.include?(genre)
+      next if title && !title.empty? && !book.title.downcase.include?(title.downcase)
+      next if genre && !genre.empty? && !book.genre.downcase.include?(genre.downcase)
+
       true
     end
   end
@@ -99,11 +90,10 @@ class BookList
     @books[book_id]
   end
 
-  
-
   def add_real_book(book)
     @books[book.id] = book
   end
+
   def delete_book(id)
     @books.delete(id)
   end

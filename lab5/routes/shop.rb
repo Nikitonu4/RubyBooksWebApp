@@ -52,7 +52,7 @@ class ShopApplication
     r.on 'lists' do
       append_view_subdir('lists')
 
-       r.is do
+      r.is do
         @lists = opts[:lists].all_lists
         view('lists')
       end

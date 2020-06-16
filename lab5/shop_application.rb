@@ -35,7 +35,7 @@ class ShopApplication < Roda
   status_handler(404) do
     view('not_found')
   end
-  
+
   route do |r|
     r.public if opts[:serve_static]
     r.hash_branches

@@ -14,17 +14,17 @@ class StationeryList
     @stationerys.values
   end
 
-   def count_stationerys
+  def count_stationerys
     count = 0
     @stationerys.each do |stationery|
-      count+=stationery.quantity
+      count += stationery.quantity
     end
-  end
+ end
 
   def total_stationerys
     total = 0
     @stationerys.values.each do |stationery|
-      total+=stationery.quantity
+      total += stationery.quantity
     end
     total
   end
