@@ -1,12 +1,26 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Магазин</li>
+      <li><a href="<%= shop_path %>">Категории</a></li>
+      <li><a href="<%= stationerys_path %>">Канцелярские товары</a></li>
+      <li><a href="<%= books_path %>">Книги</a></li>
+      <li><a href="<%= statistics_path %>">Статистика книг</a></li>
+    </ul>
+  </div>
+</div>
+
 <div class="grid-x grid-margin-x">
   <div class="large-12 cell">
-  <a class="hollow button secondary" href="<%= shop_path %>">К категориям</a>
-  <a class="hollow button secondary" href="<%= lists_path %>">К спискам покупок</a>
-  <% if @lists.all_products.size==0 %>
+    <h4>Название списка покупок: <%=@list.name%> </h4>
+    </div>
+    <div class="large-12 cell">
+    <a class="button secondary" href="<%= lists_path %>">Назад к спискам</a>
+  </div>
+  <% if @list.all_products.size==0 %>
     <div class="cell large-12 callout warning">
       Список покупок пустой
     </div>
-  <% end %>   
-  
+<%end%>
 </div>
 </div>

@@ -30,7 +30,7 @@ class ShopApplication < Roda
   opts[:store_stationerys] = StoreStationerys.new
   opts[:stationerys] = opts[:store_stationerys].stationery_list
 
-  opts[:lists] = ShopLists.new
+  opts[:lists] = Lists.new
 
   status_handler(404) do
     view('not_found')

@@ -30,3 +30,9 @@
   :genre: Фантастика
   :price: 1222.0
   :quantity: 53
+- :id: 7
+  :title: Последний черный кот
+  :author: Тривизас
+  :genre: Детектив
+  :price: 300.0
+  :quantity: 100

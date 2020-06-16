@@ -28,7 +28,7 @@ class ShopApplication
     end
   end
 
-  path ShopList do |list, action, product|
+  path List do |list, action, product|
     if product
       puts 'здесь product'
       "/shop/lists/#{list.id}/#{product.id}/#{action}"
@@ -66,7 +66,7 @@ class ShopApplication
         r.post do
           @parameters = DryResultFormeWrapper.new(ListFormSchema.call(r.params))
           if @parameters.success?
-            lists = opts[:lists].add_list(ShopList.new(@parameters[:name]))
+            lists = opts[:lists].add_list(@parameters[:name])
             r.redirect lists_path
           else
             view('list_new')
@@ -74,14 +74,32 @@ class ShopApplication
         end
       end
 
-      r.on Integer do |lists_id|
+      r.on Integer do |list_id|
         puts 'здесь ID'
-        @lists = opts[:lists].list_by_id(lists_id)
-        next if @lists.nil?
+        @list = opts[:lists].list_by_id(list_id)
+        next if @list.nil?
 
         r.is do
           view('list')
         end
+        
+        r.on 'delete' do
+          r.get do
+            @parameters = {}
+            view('list_delete')
+          end
+
+          r.post do
+            @parameters = DryResultFormeWrapper.new(DeleteSchema.call(r.params))
+            if @parameters.success?
+              opts[:lists].delete_list(@list.id)
+              r.redirect(lists_path)
+            else
+              view('list_delete')
+            end
+          end
+        end
+
       end
     end
 

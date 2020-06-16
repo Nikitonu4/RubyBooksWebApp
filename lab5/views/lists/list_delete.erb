@@ -1,12 +1,12 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-12">
-    <h4>Удаление канцелярского товара</h4>
+    <h4>Удаление списка покупок</h4>
   </div>
 </div>
 
 <div class="grid-x grid-margin-x">
   <div class="cell large-12 warning">
-    Вы действительно хотите удалить этот товар: <%= @stationery.name %>?
+    Вы действительно хотите удалить этот список покупок: <%= @list.name %>?
   </div>
 </div>
 
@@ -17,7 +17,7 @@
     </div>
     <div class="large-12 cell">
       <%= f.button(value: 'Удалить', class: 'button warning') %>
-      <a href="<%= back_location %>" class="button secondary">Отмена</a>
+      <a href="<%= lists_path %>" class="button secondary">Отмена</a>
     </div>
   </div>
 <% end %>

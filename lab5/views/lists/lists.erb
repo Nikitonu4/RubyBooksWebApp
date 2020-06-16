@@ -16,20 +16,17 @@
     <a href="<%= lists_new_path %>" class="button secondary">Добавить</a>
   </div>
 
-  <% if @lists.size == 0 %>
-    <div class="cell large-12 callout warning">
-      В приложении нет информации о списках покупок
+  <% @lists.each do |list| %>
+  
+  <div class="cell large-12">
+  <hr>
+    <div class="cell large-6">
+      <h4><%= list.name %> </h4>
     </div>
-  <% else%>
-    <% @lists.each do |list| %>
-     <div class="cell large-12">
-     <hr>
-       <h4><%= list.name %>
-       <a class="button" href="<%= path(list) %>">Информация о списке</a>
-    
-       </h4>
-     </div>
+    <div class="cell large-6">
+       <a class="hollow button medium" href="<%= path(list) %>">Информация о списке</a>
+       <a class="hollow button alert medium" href="<%= path(list, 'delete') %>">Удалить список</a>
+       </div>
+    </div>
    <% end %>
- <% end %>
-
 </div>
