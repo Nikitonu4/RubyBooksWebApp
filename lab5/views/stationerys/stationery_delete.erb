@@ -16,8 +16,8 @@
       <%= f.input(:confirmation, type: :checkbox, label: 'Подтвержаю удаление') %>
     </div>
     <div class="large-12 cell">
-      <%= f.button(value: 'Удалить', class: 'button warning') %>
-      <a href="<%= back_location %>" class="button secondary">Отмена</a>
+      <%= f.button(value: 'Удалить', class: 'alert button') %>
+      <a href="<%= path(@stationery) %>" class="button secondary">Отмена</a>
     </div>
   </div>
 <% end %>

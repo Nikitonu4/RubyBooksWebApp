@@ -18,18 +18,40 @@ class List
     @products[id]
   end
 
-  # def count_product
-  #   @products.each do |
-  # end
+  def count_product(name)
+    count = 0
+    @products.each do |_id, product|
+      count += 1 if product.name == name
+    end
+    count
+  end
+
+  def id_by_name(name)
+    @products.each do |id, product|
+      return id if product.name == name
+    end
+  end
+
+  def total_price
+    price = 0
+    @products.each do |_id, product|
+      price += product.price
+    end
+    price
+  end
+
+  def product_price(name)
+    price = 0
+    @products.each do |_id, product|
+      price += product.price if product.name == name
+    end
+    price
+  end
 
   def all_products
     @products.values
   end
 
-  def size
-    @products.keys.max
-  end
-  
   def add_product(product)
     product_id = if @products.empty?
                    1
@@ -40,12 +62,7 @@ class List
     @products.values
   end
 
-   # def price
-  #   price=0
-  #   for id in 0 .. @products.keys.max 
-  #      price= price + @products[product_id].price
-  #   end
-  #   price
-  # end
-
+  def delete_product(id)
+    @products.delete(id)
+  end
 end

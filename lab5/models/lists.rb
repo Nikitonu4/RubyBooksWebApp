@@ -16,17 +16,15 @@ class Lists
 
   def names
     names = []
-    @lists.each do |id, list|
+    @lists.each do |_id, list|
       names.append(list.name)
     end
     names
   end
 
-  def id_by_name(name) 
-    @lists.each do |id, list| 
-      if(list.name == name)
-        return id
-      end
+  def id_by_name(name)
+    @lists.each do |id, list|
+      return id if list.name == name
     end
   end
 
@@ -43,7 +41,7 @@ class Lists
                 1
               else
                 @lists.keys.max + 1
-                    end
+              end
     @lists[list_id] = List.new(list_id, parameters)
     @lists[list_id]
   end

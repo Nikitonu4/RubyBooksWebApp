@@ -28,9 +28,9 @@ class ShopApplication
     end
   end
 
-  path List do |list, action, product|
-    if product
-      "/shop/lists/#{list.id}/#{product.id}/#{action}"
+  path List do |list, action, product_name|
+    if product_name
+      "/shop/lists/#{list.id}/#{list.id_by_name(product_name)}/#{action}"
     elsif action
       "/shop/lists/#{list.id}/#{action}"
     else
@@ -61,9 +61,13 @@ class ShopApplication
         end
 
         r.post do
-          @parameters = DryResultFormeWrapper.new(ListFormSchema.call(r.params))
-          if @parameters.success?
+          @parameters = DryResultFormeWrapper.new(ListAddFormSchema.call(r.params))
+          if opts[:lists].names.include?(@parameters[:name])
+            @flag = true
+          end
+          if @parameters.success? && !@flag
             lists = opts[:lists].add_list(@parameters[:name])
+
             r.redirect lists_path
           else
             view('list_new')
@@ -96,17 +100,28 @@ class ShopApplication
           end
         end
 
-        # r.on Integer do |product_id|
+        r.on Integer do |product_id|
+          @product = opts[:lists].list_by_id(list_id).product_by_id(product_id)
+          next if @product.nil?
 
-        # next if @product.nil? 
-
-
-
-
-
+          r.on 'delete' do
+            r.get do
+              @parameters = {}
+              view('product_delete')
+            end
+            r.post do
+              @parameters = DryResultFormeWrapper.new(DeleteSchema.call(r.params))
+              if @parameters.success?
+                opts[:lists].list_by_id(list_id).delete_product(product_id)
+                r.redirect(path(@list))
+              else
+                view('product_delete')
+              end
+            end
+          end
+        end
       end
     end
-
 
     r.on 'stationerys' do
       append_view_subdir('stationerys')
@@ -135,10 +150,33 @@ class ShopApplication
 
       r.on Integer do |stationery_id|
         @stationery = opts[:stationerys].stationery_by_id(stationery_id)
+        pp @stationary
         next if @stationery.nil?
 
         r.is do
           view('stationery')
+        end
+
+        r.on 'add' do
+          r.get do
+            @list = opts[:lists].all_lists
+            pp @list
+            @names = opts[:lists].names
+            @parameters = {}
+            view('stationery_add')
+          end
+
+          r.post do
+            @parameters = DryResultFormeWrapper.new(ProductAddFormSchema.call(r.params))
+            if @parameters.success?
+              @lists = opts[:lists]
+              list = @lists.list_by_id(@lists.id_by_name(@parameters[:name]))
+              list.add_product(@stationery)
+              r.redirect(path(list))
+            else
+              view('stationery_add')
+            end
+          end
         end
 
         r.on 'delete' do
@@ -166,7 +204,7 @@ class ShopApplication
       r.is do
         @params = DryResultFormeWrapper.new(BookFilterFormSchema.call(r.params))
         @filtered_books = if @params.success?
-                            opts[:books].filter(@params[:title], @params[:genre])
+                            opts[:books].filter(@params[:name], @params[:genre])
                           else
                             opts[:books].all_books
                           end
@@ -202,9 +240,9 @@ class ShopApplication
             @parameters = DryResultFormeWrapper.new(ProductAddFormSchema.call(r.params))
             if @parameters.success?
               @lists = opts[:lists]
-              pp @book
-              @lists.list_by_id(@lists.id_by_name(@parameters[:name])).add_product(@book)
-              r.redirect(lists_path)
+              list = @lists.list_by_id(@lists.id_by_name(@parameters[:name]))
+              list.add_product(@book)
+              r.redirect(path(list))
             else
               view('book_add')
             end

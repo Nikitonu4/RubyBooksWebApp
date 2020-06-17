@@ -71,9 +71,9 @@ class BookList
     @books[id]
   end
 
-  def filter(title, genre)
+  def filter(name, genre)
     @books.values.select do |book|
-      next if title && !title.empty? && !book.title.downcase.include?(title.downcase)
+      next if name && !name.empty? && !book.name.downcase.include?(name.downcase)
       next if genre && !genre.empty? && !book.genre.downcase.include?(genre.downcase)
 
       true

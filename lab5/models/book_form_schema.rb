@@ -5,7 +5,7 @@ require 'dry-schema'
 require_relative 'schema_types'
 
 BookFormSchema = Dry::Schema.Params do
-  required(:title).filled(SchemaTypes::StrippedString)
+  required(:name).filled(SchemaTypes::StrippedString)
   required(:author).filled(SchemaTypes::StrippedString)
   required(:genre).filled(SchemaTypes::StrippedString)
   required(:price).filled(:float, gt?: 0)

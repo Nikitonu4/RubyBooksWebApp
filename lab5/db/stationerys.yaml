@@ -24,19 +24,19 @@
   :name: Бумага для принтера А4
   :price: 220.0
   :quantity: 50
-- :id: 8
-  :name: Калькулятор
-  :price: 870.0
-  :quantity: 20
 - :id: 9
   :name: Корректор текста
   :price: 100.0
   :quantity: 435
-- :id: 10
-  :name: Бейдж
-  :price: 40.0
-  :quantity: 100
 - :id: 11
   :name: де-факто карандаш
   :price: 100.0
   :quantity: 320
+- :id: 12
+  :name: Степлер
+  :price: 320.0
+  :quantity: 100
+- :id: 13
+  :name: Калькулятор
+  :price: 500.0
+  :quantity: 100
