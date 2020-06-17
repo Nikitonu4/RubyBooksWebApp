@@ -8,7 +8,7 @@
     <p>Цена: <%= @book.price %></p>
     <p>Количество штук в магазине: <%= @book.quantity %></p>
     <a class="alert button" href="<%= path(@book, 'delete') %>">Удалить</a>
-    <a class="button secondary" href="<%= books_path %>">Книги</a>
-     <a class="button" href="<%= shop_path %>">Категории</a>
+    <a class="button secondary" href="<%= books_path %>">Назад</a>
+    <a class="button" href="<%= path(@book, 'add') %>">Добавить в список покупок</a>
   </div>
 </div>

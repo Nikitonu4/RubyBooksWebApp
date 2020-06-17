@@ -13,14 +13,46 @@
 <div class="grid-x grid-margin-x">
   <div class="large-12 cell">
     <h4>Название списка покупок: <%=@list.name%> </h4>
-    </div>
-    <div class="large-12 cell">
+  </div>
+
+  
+  
+  
+
+  <% if @list.all_products.empty? %>
+  <div class="large-12 cell">
     <a class="button secondary" href="<%= lists_path %>">Назад к спискам</a>
   </div>
-  <% if @list.all_products.size==0 %>
-    <div class="cell large-12 callout warning">
+    <div class="cell large-12 callout">
       Список покупок пустой
     </div>
+  <%else%>
+
+  <div class="large-12 cell">
+    <div class="large-12 cell">
+      <h4>Общая стоимость:  <%=@list%></h4>
+    </div>
+    <div class="large-12 cell">
+      <a class="button secondary" href="<%= lists_path %>">Назад к спискам</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Количество</th>
+          <th>Название товара</th>
+          <th>Цена(за один товар)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @list.all_products.uniq.each do |product| %>
+          <tr>
+            <td> <%= product %> </td> 
+            <td> <%= product.title %> </td>
+            <td> <%= product.price %> </td>
+            <td> <%= product %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <%end%>
-</div>
-</div>

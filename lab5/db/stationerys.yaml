@@ -36,3 +36,7 @@
   :name: Бейдж
   :price: 40.0
   :quantity: 100
+- :id: 11
+  :name: де-факто карандаш
+  :price: 100.0
+  :quantity: 320

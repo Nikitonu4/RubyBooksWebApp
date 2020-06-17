@@ -14,22 +14,41 @@ class Lists
     @lists.values
   end
 
+  def names
+    names = []
+    @lists.each do |id, list|
+      names.append(list.name)
+    end
+    names
+  end
+
+  def id_by_name(name) 
+    @lists.each do |id, list| 
+      if(list.name == name)
+        return id
+      end
+    end
+  end
+
   def list_by_id(id)
     @lists[id]
   end
 
+  def all_keys
+    @lists.keys
+  end
+
   def add_list(parameters)
     list_id = if @lists.empty?
-                      1
-                    else
-                      @lists.keys.max + 1
+                1
+              else
+                @lists.keys.max + 1
                     end
     @lists[list_id] = List.new(list_id, parameters)
     @lists[list_id]
   end
-  
+
   def delete_list(id)
     @lists.delete(id)
   end
-
 end

@@ -30,13 +30,10 @@ class ShopApplication
 
   path List do |list, action, product|
     if product
-      puts 'здесь product'
       "/shop/lists/#{list.id}/#{product.id}/#{action}"
     elsif action
-      puts 'здесь action'
       "/shop/lists/#{list.id}/#{action}"
     else
-      pp list.id
       "/shop/lists/#{list.id}"
     end
   end
@@ -75,14 +72,13 @@ class ShopApplication
       end
 
       r.on Integer do |list_id|
-        puts 'здесь ID'
         @list = opts[:lists].list_by_id(list_id)
         next if @list.nil?
 
         r.is do
           view('list')
         end
-        
+
         r.on 'delete' do
           r.get do
             @parameters = {}
@@ -100,8 +96,17 @@ class ShopApplication
           end
         end
 
+        # r.on Integer do |product_id|
+
+        # next if @product.nil? 
+
+
+
+
+
       end
     end
+
 
     r.on 'stationerys' do
       append_view_subdir('stationerys')
@@ -183,6 +188,27 @@ class ShopApplication
 
         r.is do
           view('book')
+        end
+
+        r.on 'add' do
+          r.get do
+            @list = opts[:lists].all_lists
+            @names = opts[:lists].names
+            @parameters = {}
+            view('book_add')
+          end
+
+          r.post do
+            @parameters = DryResultFormeWrapper.new(ProductAddFormSchema.call(r.params))
+            if @parameters.success?
+              @lists = opts[:lists]
+              pp @book
+              @lists.list_by_id(@lists.id_by_name(@parameters[:name])).add_product(@book)
+              r.redirect(lists_path)
+            else
+              view('book_add')
+            end
+          end
         end
 
         r.on 'delete' do

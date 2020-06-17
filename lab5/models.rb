@@ -14,3 +14,5 @@ require_relative 'models/stationery_form_schema'
 require_relative 'models/lists'
 require_relative 'models/list_form_schema'
 require_relative 'models/list'
+require_relative 'models/product_add_form_schema'
+
