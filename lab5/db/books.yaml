@@ -30,3 +30,9 @@
   :genre: Фантастика
   :price: 1222.0
   :quantity: 53
+- :id: 7
+  :name: Волшебник
+  :author: Набоков
+  :genre: Классика
+  :price: 1200.0
+  :quantity: 43

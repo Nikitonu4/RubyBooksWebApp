@@ -2,8 +2,8 @@
 
 require 'dry-schema'
 
-require_relative 'schema_types'
+require_relative '../schema_types'
 
-ProductAddFormSchema = Dry::Schema.Params do
+ListAddFormSchema = Dry::Schema.Params do
   required(:name).filled(SchemaTypes::StrippedString)
 end

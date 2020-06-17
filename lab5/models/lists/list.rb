@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'book'
-require_relative 'stationery'
+require_relative '../books/book'
+require_relative '../stationerys/stationery'
 
-# list
+# Class list
 class List
   attr_reader :id, :name
   def initialize(id, name, products = [])
@@ -57,9 +57,20 @@ class List
                    1
                  else
                    @products.keys.max + 1
-              end
+                 end
     @products[product_id] = product
     @products.values
+  end
+
+  def write_in_file(name, list)
+    current_path = File.expand_path('../../', __dir__)
+    file = File.new(current_path + '/' + name + '.txt', 'a:UTF-8')
+    file.print('Назание списка покупок: ' + list.name + "\n\n")
+    list.all_products.uniq.each do |product|
+      file.print(product.name.to_s + " #{list.count_product(product.name)}" + ' шт., цена: ' \
+       "#{list.product_price(product.name)}\n")
+    end
+    file.close
   end
 
   def delete_product(id)

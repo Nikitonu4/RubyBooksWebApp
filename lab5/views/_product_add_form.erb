@@ -1,7 +1,7 @@
 <%if @list.empty?%>
     <div class="callout">У вас нет списков покупок</div>
     <a class="button" href="<%= lists_new_path %>">Создать список покупок</a> 
-    <a class="button" href="<%= back_location%>">Отмена</a> 
+    <a class="button secondary" href="<%= back_location%>">Отмена</a> 
   <%else%>
     <% form({ method: :post },{ obj: @parameters }) do |f| %>
       <div class="grid-x grid-margin-x"> 

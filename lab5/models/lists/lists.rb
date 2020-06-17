@@ -2,7 +2,7 @@
 
 require_relative 'list'
 
-# The class that contains all our books
+# The class that contains all our lists
 class Lists
   def initialize(lists = [])
     @lists = lists.map do |list|
@@ -30,10 +30,6 @@ class Lists
 
   def list_by_id(id)
     @lists[id]
-  end
-
-  def all_keys
-    @lists.keys
   end
 
   def add_list(parameters)

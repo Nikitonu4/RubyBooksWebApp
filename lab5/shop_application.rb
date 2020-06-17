@@ -23,6 +23,7 @@ class ShopApplication < Roda
   end
 
   require_relative 'routes/shop.rb'
+  require_relative 'routes/handler.rb'
 
   opts[:store_books] = StoreBooks.new
   opts[:books] = opts[:store_books].book_list
@@ -33,12 +34,13 @@ class ShopApplication < Roda
   opts[:lists] = Lists.new
 
   status_handler(404) do
-    view('not_found')
+    view('../views/not_found')
   end
 
   route do |r|
     r.public if opts[:serve_static]
     r.hash_branches
+
     r.root do
       r.redirect shop_path
     end

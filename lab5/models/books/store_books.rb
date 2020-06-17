@@ -4,11 +4,11 @@ require 'psych'
 require_relative 'book_list'
 require_relative 'book'
 
-# Storage for all of our data
+# Storage for all of our books data
 class StoreBooks
   attr_reader :book_list
 
-  DATA_BOOK_STORE = File.expand_path('../db/books.yaml', __dir__)
+  DATA_BOOK_STORE = File.expand_path('../../db/books.yaml', __dir__)
 
   def initialize
     @book_list = BookList.new

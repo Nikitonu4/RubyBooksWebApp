@@ -4,11 +4,11 @@ require 'psych'
 require_relative 'stationery_list'
 require_relative 'stationery'
 
-# Storage for all of our data
+# Storage for all of our statioenry data
 class StoreStationerys
   attr_reader :stationery_list
 
-  DATA_STATIONERY_STORE = File.expand_path('../db/stationerys.yaml', __dir__)
+  DATA_STATIONERY_STORE = File.expand_path('../../db/stationerys.yaml', __dir__)
 
   def initialize
     @stationery_list = StationeryList.new

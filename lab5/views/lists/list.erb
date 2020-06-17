@@ -14,7 +14,7 @@
   <div class="large-12 cell">
     <h4>Название списка покупок: <%=@list.name%> </h4>
   </div>
-  
+
   <% if @list.all_products.empty? %>
   <div class="large-12 cell">
     <a class="button secondary" href="<%= lists_path %>">Назад к спискам</a>
@@ -30,6 +30,7 @@
     </div>
     <div class="large-12 cell">
       <a class="button secondary" href="<%= lists_path %>">Назад к спискам</a>
+      <a class="button" href="<%= path(@list, 'buy') %>">Оплатить список</a>
     </div>
     <table>
       <thead>

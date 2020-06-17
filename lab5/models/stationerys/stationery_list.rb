@@ -2,7 +2,7 @@
 
 require_relative 'stationery'
 
-# The class that contains all our books
+# The class that contains all our stationery
 class StationeryList
   def initialize(stationerys = [])
     @stationerys = stationerys.map do |stationery|
@@ -19,7 +19,7 @@ class StationeryList
     @stationerys.each do |stationery|
       count += stationery.quantity
     end
- end
+  end
 
   def total_stationerys
     total = 0
@@ -45,13 +45,6 @@ class StationeryList
 
   def add_real_stationery(stationery)
     @stationerys[stationery.id] = stationery
-  end
-
-  def update_stationery(id, parameters)
-    stationery = @stationerys[id]
-    parameters.to_h.each do |key, value|
-      stationery[key] = value
-    end
   end
 
   def delete_stationery(id)
