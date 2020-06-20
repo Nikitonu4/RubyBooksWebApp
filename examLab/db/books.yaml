@@ -11,13 +11,13 @@
   :author: Булгаков
   :genre: Роман
   :price: 1290.0
-  :quantity: 1
+  :quantity: 4
 - :id: 4
   :name: Девятный Спас
   :author: Брусникин
   :genre: Приключения
   :price: 400.0
-  :quantity: 1
+  :quantity: 5
 - :id: 5
   :name: Младший брат
   :author: Доктороу
