@@ -1,0 +1,17 @@
+<%if @list.empty?%>
+    <div class="callout">У вас нет списков покупок</div>
+    <a class="button" href="<%= lists_new_path %>">Создать список покупок</a> 
+    <a class="button secondary" href="<%= back_location%>">Отмена</a> 
+  <%else%>
+    <% form({ method: :post },{ obj: @parameters }) do |f| %>
+      <div class="grid-x grid-margin-x"> 
+        <div class="large-12 cell">
+          <%= f.input(:name, type: :select, label: 'Выберите список покупок', options:@names) %>
+        </div>
+        <div class="large-12 cell">
+          <%= f.button(value: form_type, class: 'button') %>
+          <a href="<%= back_location %>" class="button secondary">Отмена</a>
+        </div>
+      </div>
+    <% end %>
+<% end %>
